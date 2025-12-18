@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createApiSupabaseClient } from '@/lib/supabase/server'
 import { verifyPassword, generateToken, AdminPayload } from '@/lib/auth'
+import { AdminUser } from '@/lib/supabase/types'
 
 // Protection brute force : limite les tentatives de connexion par IP
 const loginAttempts = new Map<string, { count: number; blockedUntil: number }>()
@@ -95,8 +96,11 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Type assertion pour TypeScript
+    const adminUser = user as AdminUser
+
     // Vérifier le mot de passe
-    const isValid = await verifyPassword(password, user.password_hash)
+    const isValid = await verifyPassword(password, adminUser.password_hash)
     if (!isValid) {
       recordFailedAttempt(clientIP)
       return NextResponse.json(
@@ -110,10 +114,10 @@ export async function POST(request: NextRequest) {
 
     // Générer le token
     const payload: AdminPayload = {
-      id: user.id,
-      email: user.email,
-      name: user.name,
-      role: user.role as 'admin' | 'manager' | 'viewer',
+      id: adminUser.id,
+      email: adminUser.email,
+      name: adminUser.name,
+      role: adminUser.role as 'admin' | 'manager' | 'viewer',
     }
     const token = generateToken(payload)
 
@@ -121,14 +125,14 @@ export async function POST(request: NextRequest) {
     await supabase
       .from('admin_users')
       .update({ last_login: new Date().toISOString() })
-      .eq('id', user.id)
+      .eq('id', adminUser.id)
 
     // Logger l'action
     await supabase.from('activity_logs').insert({
-      admin_id: user.id,
+      admin_id: adminUser.id,
       action: 'login',
       entity_type: 'admin_user',
-      entity_id: user.id,
+      entity_id: adminUser.id,
       ip_address: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown',
     })
 
