@@ -28,7 +28,7 @@ export async function GET(
 
     // Marquer comme lu si ce n'est pas déjà fait
     if (!data.is_read) {
-      // @ts-expect-error - Supabase type inference issue
+      // @ts-ignore - Supabase type inference issue
       await supabase
         .from('contact_requests')
         .update({ is_read: true })
@@ -65,7 +65,7 @@ export async function PATCH(
 
     const supabase = createApiSupabaseClient()
 
-    // @ts-expect-error - Supabase type inference issue
+    // @ts-ignore - Supabase type inference issue
     const { data, error } = await supabase
       .from('contact_requests')
       .update(updateData)
@@ -79,7 +79,7 @@ export async function PATCH(
     }
 
     // Logger l'action
-    // @ts-expect-error - Supabase type inference issue
+    // @ts-ignore - Supabase type inference issue
     await supabase.from('activity_logs').insert({
       admin_id: user.id,
       action: 'update',
@@ -110,7 +110,7 @@ export async function DELETE(
     const supabase = createApiSupabaseClient()
 
     // Archiver plutôt que supprimer définitivement
-    // @ts-expect-error - Supabase type inference issue
+    // @ts-ignore - Supabase type inference issue
     const { error } = await supabase
       .from('contact_requests')
       .update({ status: 'archived' })
@@ -122,7 +122,7 @@ export async function DELETE(
     }
 
     // Logger l'action
-    // @ts-expect-error - Supabase type inference issue
+    // @ts-ignore - Supabase type inference issue
     await supabase.from('activity_logs').insert({
       admin_id: user.id,
       action: 'archive',

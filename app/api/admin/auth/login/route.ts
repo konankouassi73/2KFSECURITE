@@ -122,14 +122,14 @@ export async function POST(request: NextRequest) {
     const token = generateToken(payload)
 
     // Mettre à jour la dernière connexion
-    // @ts-expect-error - Supabase type inference issue
+    // @ts-ignore - Supabase type inference issue
     await supabase
       .from('admin_users')
       .update({ last_login: new Date().toISOString() })
       .eq('id', adminUser.id)
 
     // Logger l'action
-    // @ts-expect-error - Supabase type inference issue
+    // @ts-ignore - Supabase type inference issue
     await supabase.from('activity_logs').insert({
       admin_id: adminUser.id,
       action: 'login',
