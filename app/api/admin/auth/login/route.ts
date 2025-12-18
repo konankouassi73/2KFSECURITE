@@ -122,7 +122,7 @@ export async function POST(request: NextRequest) {
     const token = generateToken(payload)
 
     // Mettre à jour la dernière connexion
-    // @ts-ignore - Supabase type inference issue
+    // @ts-ignore - Supabase type inference issue (fixed in commit fbd5979)
     await supabase
       .from('admin_users')
       .update({ last_login: new Date().toISOString() })
