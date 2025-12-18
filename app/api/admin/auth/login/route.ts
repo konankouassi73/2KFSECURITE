@@ -122,19 +122,21 @@ export async function POST(request: NextRequest) {
     const token = generateToken(payload)
 
     // Mettre à jour la dernière connexion
+    // @ts-expect-error - Supabase type inference issue
     await supabase
       .from('admin_users')
-      .update({ last_login: new Date().toISOString() } as any)
+      .update({ last_login: new Date().toISOString() })
       .eq('id', adminUser.id)
 
     // Logger l'action
+    // @ts-expect-error - Supabase type inference issue
     await supabase.from('activity_logs').insert({
       admin_id: adminUser.id,
       action: 'login',
       entity_type: 'admin_user',
       entity_id: adminUser.id,
       ip_address: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown',
-    } as any)
+    })
 
     // Créer la réponse avec le cookie
     const response = NextResponse.json({

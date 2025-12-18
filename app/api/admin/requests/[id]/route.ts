@@ -28,9 +28,10 @@ export async function GET(
 
     // Marquer comme lu si ce n'est pas déjà fait
     if (!data.is_read) {
+      // @ts-expect-error - Supabase type inference issue
       await supabase
         .from('contact_requests')
-        .update({ is_read: true } as any)
+        .update({ is_read: true })
         .eq('id', params.id)
     }
 
@@ -64,9 +65,10 @@ export async function PATCH(
 
     const supabase = createApiSupabaseClient()
 
+    // @ts-expect-error - Supabase type inference issue
     const { data, error } = await supabase
       .from('contact_requests')
-      .update(updateData as any)
+      .update(updateData)
       .eq('id', params.id)
       .select()
       .single()
@@ -77,6 +79,7 @@ export async function PATCH(
     }
 
     // Logger l'action
+    // @ts-expect-error - Supabase type inference issue
     await supabase.from('activity_logs').insert({
       admin_id: user.id,
       action: 'update',
@@ -84,7 +87,7 @@ export async function PATCH(
       entity_id: params.id,
       details: { changes: updateData },
       ip_address: request.headers.get('x-forwarded-for') || 'unknown',
-    } as any)
+    })
 
     return NextResponse.json({ data })
   } catch (error) {
@@ -107,9 +110,10 @@ export async function DELETE(
     const supabase = createApiSupabaseClient()
 
     // Archiver plutôt que supprimer définitivement
+    // @ts-expect-error - Supabase type inference issue
     const { error } = await supabase
       .from('contact_requests')
-      .update({ status: 'archived' } as any)
+      .update({ status: 'archived' })
       .eq('id', params.id)
 
     if (error) {
@@ -118,13 +122,14 @@ export async function DELETE(
     }
 
     // Logger l'action
+    // @ts-expect-error - Supabase type inference issue
     await supabase.from('activity_logs').insert({
       admin_id: user.id,
       action: 'archive',
       entity_type: 'contact_request',
       entity_id: params.id,
       ip_address: request.headers.get('x-forwarded-for') || 'unknown',
-    } as any)
+    })
 
     return NextResponse.json({ success: true })
   } catch (error) {
