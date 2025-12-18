@@ -30,7 +30,7 @@ export async function GET(
     if (!data.is_read) {
       await supabase
         .from('contact_requests')
-        .update({ is_read: true })
+        .update({ is_read: true } as any)
         .eq('id', params.id)
     }
 
@@ -66,7 +66,7 @@ export async function PATCH(
 
     const { data, error } = await supabase
       .from('contact_requests')
-      .update(updateData)
+      .update(updateData as any)
       .eq('id', params.id)
       .select()
       .single()
@@ -84,7 +84,7 @@ export async function PATCH(
       entity_id: params.id,
       details: { changes: updateData },
       ip_address: request.headers.get('x-forwarded-for') || 'unknown',
-    })
+    } as any)
 
     return NextResponse.json({ data })
   } catch (error) {
@@ -109,7 +109,7 @@ export async function DELETE(
     // Archiver plutôt que supprimer définitivement
     const { error } = await supabase
       .from('contact_requests')
-      .update({ status: 'archived' })
+      .update({ status: 'archived' } as any)
       .eq('id', params.id)
 
     if (error) {
@@ -124,7 +124,7 @@ export async function DELETE(
       entity_type: 'contact_request',
       entity_id: params.id,
       ip_address: request.headers.get('x-forwarded-for') || 'unknown',
-    })
+    } as any)
 
     return NextResponse.json({ success: true })
   } catch (error) {
