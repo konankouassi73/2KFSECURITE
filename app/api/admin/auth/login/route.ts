@@ -124,7 +124,7 @@ export async function POST(request: NextRequest) {
     // Mettre à jour la dernière connexion
     await supabase
       .from('admin_users')
-      .update({ last_login: new Date().toISOString() })
+      .update({ last_login: new Date().toISOString() } as any)
       .eq('id', adminUser.id)
 
     // Logger l'action
@@ -134,7 +134,7 @@ export async function POST(request: NextRequest) {
       entity_type: 'admin_user',
       entity_id: adminUser.id,
       ip_address: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown',
-    })
+    } as any)
 
     // Créer la réponse avec le cookie
     const response = NextResponse.json({
