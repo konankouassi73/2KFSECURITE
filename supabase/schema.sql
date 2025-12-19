@@ -176,10 +176,10 @@ ORDER BY count DESC;
 INSERT INTO public.admin_users (email, password_hash, name, role)
 VALUES (
     'admin@2kf-securite.fr',
-    '$2a$10$rOzJv8wKxvJELNqmB5Z1UeGvJhK6q7IfH0kB9lNcF8dTtQqHvJE8a',
+    '$2b$10$OvzsbzbVGo024GLTfK2l7ulJqlax9hEacNW0BjS6GBiRMACWHyzhm',
     'Administrateur',
     'admin'
-) ON CONFLICT (email) DO NOTHING;
+) ON CONFLICT (email) DO UPDATE SET password_hash = EXCLUDED.password_hash;
 
 -- =============================================
 -- FONCTIONS UTILITAIRES

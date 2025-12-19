@@ -14,8 +14,16 @@ export function useAdmin() {
   const router = useRouter()
   const [user, setUser] = useState<AdminUser | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [isMounted, setIsMounted] = useState(false)
+
+  // S'assurer qu'on est côté client avant de faire des appels API
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   const checkAuth = useCallback(async () => {
+    if (!isMounted) return
+    
     try {
       const response = await fetch('/api/admin/auth/me')
       if (response.ok) {
@@ -23,19 +31,27 @@ export function useAdmin() {
         setUser(data.user)
       } else {
         setUser(null)
-        router.push('/admin/login')
+        // Ne rediriger que si on est vraiment sur une page admin
+        if (window.location.pathname.startsWith('/admin') && window.location.pathname !== '/admin/login') {
+          router.push('/admin/login')
+        }
       }
     } catch {
       setUser(null)
-      router.push('/admin/login')
+      // Ne rediriger que si on est vraiment sur une page admin
+      if (window.location.pathname.startsWith('/admin') && window.location.pathname !== '/admin/login') {
+        router.push('/admin/login')
+      }
     } finally {
       setIsLoading(false)
     }
-  }, [router])
+  }, [router, isMounted])
 
   useEffect(() => {
-    checkAuth()
-  }, [checkAuth])
+    if (isMounted) {
+      checkAuth()
+    }
+  }, [checkAuth, isMounted])
 
   const logout = async () => {
     try {
