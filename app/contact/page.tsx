@@ -15,8 +15,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: 'Email',
-    values: ['contact@2kf-securite.fr'],
-    href: ['mailto:contact@2kf-securite.fr'],
+    values: ['2kfsecurite@gmail.com'],
+    href: ['mailto:2kfsecurite@gmail.com'],
   },
   {
     icon: MapPin,
@@ -83,11 +83,11 @@ export default function ContactPage() {
               <span>07 69 93 07 71</span>
             </a>
             <a
-              href="mailto:contact@2kf-securite.fr"
+              href="mailto:2kfsecurite@gmail.com"
               className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white/5 border border-white/20 text-white font-display font-semibold text-sm sm:text-base transition-all hover:bg-white/10 active:scale-[0.98]"
             >
               <Mail className="w-4 h-4" />
-              <span className="hidden sm:inline">contact@2kf-securite.fr</span>
+              <span className="hidden sm:inline">2kfsecurite@gmail.com</span>
               <span className="sm:hidden">Email</span>
             </a>
           </div>

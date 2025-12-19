@@ -71,13 +71,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    url: 'https://2kf-securite.fr',
+    url: 'https://2kfsecurite.fr',
     title: '2KF SÉCURITÉ - Gardiennage & Sécurité Incendie Paris',
     description: 'Entreprise de gardiennage et sécurité incendie. Agents certifiés CNAPS et SSIAP. Spécialiste ERP et IGH. +20 ans d\'expérience.',
     siteName: '2KF SÉCURITÉ',
     images: [
       {
-        url: 'https://2kf-securite.fr/og-image-placeholder.svg',
+        url: 'https://2kfsecurite.fr/og-image-placeholder.svg',
         width: 1200,
         height: 630,
         alt: '2KF SÉCURITÉ - Sécurité Privée d\'Élite Paris',
@@ -91,7 +91,7 @@ export const metadata: Metadata = {
     description: 'Services professionnels de gardiennage, sécurité événementielle, rondes et interventions.',
   },
   alternates: {
-    canonical: 'https://2kf-securite.fr',
+    canonical: 'https://2kfsecurite.fr',
   },
   verification: {
     // À ajouter si vous utilisez Google Search Console

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     description: 'Une équipe de professionnels expérimentés au service de votre sécurité. Gardiennage et sécurité incendie.',
     images: [
       {
-        url: 'https://2kf-securite.fr/og-entreprise.jpg',
+        url: 'https://2kfsecurite.fr/og-entreprise.jpg',
         width: 1200,
         height: 630,
         alt: 'À Propos de 2KF SÉCURITÉ',

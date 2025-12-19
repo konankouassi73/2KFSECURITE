@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     description: 'Les réponses à vos questions sur nos services, nos certifications et nos protocoles de sécurité.',
     images: [
       {
-        url: 'https://2kf-securite.fr/og-faq.jpg',
+        url: 'https://2kfsecurite.fr/og-faq.jpg',
         width: 1200,
         height: 630,
         alt: 'FAQ 2KF SÉCURITÉ',

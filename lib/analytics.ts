@@ -46,7 +46,7 @@ export const analytics = {
 
   // Clic email
   trackEmailClick: () => {
-    trackEvent('email_click', 'contact', 'contact@2kf-securite.fr')
+    trackEvent('email_click', 'contact', '2kfsecurite@gmail.com')
   },
 
   // Téléchargement de fichier (si ajouté plus tard)

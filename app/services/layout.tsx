@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     description: 'Gardiennage, rondes, sécurité incendie SSIAP, vidéosurveillance. Solutions sur mesure pour vos établissements.',
     images: [
       {
-        url: 'https://2kf-securite.fr/og-services.jpg',
+        url: 'https://2kfsecurite.fr/og-services.jpg',
         width: 1200,
         height: 630,
         alt: 'Services de Sécurité 2KF - Paris',

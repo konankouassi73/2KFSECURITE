@@ -87,11 +87,11 @@ export function Footer() {
               <li className="flex items-start space-x-2 text-primary-gray">
                 <Mail size={14} className="mt-0.5 sm:mt-1 text-primary-accent flex-shrink-0" />
                 <a 
-                  href="mailto:contact@2kf-securite.fr"
+                  href="mailto:2kfsecurite@gmail.com"
                   className="hover:text-primary-accent active:text-primary-accent transition-colors text-xs sm:text-sm break-all"
                   onClick={() => analytics.trackEmailClick()}
                 >
-                  contact@2kf-securite.fr
+                  2kfsecurite@gmail.com
                 </a>
               </li>
               <li className="flex items-start space-x-2 text-primary-gray">

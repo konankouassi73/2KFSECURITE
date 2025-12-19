@@ -4,13 +4,13 @@ export function LocalBusinessSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://2kf-securite.fr/#organization",
+    "@id": "https://2kfsecurite.fr/#organization",
     "name": "2KF SÉCURITÉ",
     "legalName": "2KF SÉCURITÉ",
-    "image": "https://2kf-securite.fr/og-image.jpg",
-    "url": "https://2kf-securite.fr",
+    "image": "https://2kfsecurite.fr/og-image.jpg",
+    "url": "https://2kfsecurite.fr",
     "telephone": "+33769930771",
-    "email": "contact@2kf-securite.fr",
+    "email": "2kfsecurite@gmail.com",
     "priceRange": "€€",
     "address": {
       "@type": "PostalAddress",
@@ -77,66 +77,66 @@ export function ServicesSchema() {
   const services = [
     {
       "@type": "Service",
-      "@id": "https://2kf-securite.fr/services#gardiennage",
+      "@id": "https://2kfsecurite.fr/services#gardiennage",
       "name": "Gardiennage et Surveillance",
       "description": "Service de gardiennage 24h/24 avec agents qualifiés. Contrôle d'accès, surveillance de sites, ronde de sécurité pour entreprises, commerces et sites sensibles.",
       "provider": {
-        "@id": "https://2kf-securite.fr/#organization"
+        "@id": "https://2kfsecurite.fr/#organization"
       },
       "areaServed": "Paris et Île-de-France",
       "serviceType": "Gardiennage"
     },
     {
       "@type": "Service",
-      "@id": "https://2kf-securite.fr/services#ssiap",
+      "@id": "https://2kfsecurite.fr/services#ssiap",
       "name": "Sécurité Incendie SSIAP",
       "description": "Agents SSIAP 1, 2 et 3 certifiés pour la sécurité incendie. Prévention incendie, assistance et évacuation des personnes dans les ERP et IGH.",
       "provider": {
-        "@id": "https://2kf-securite.fr/#organization"
+        "@id": "https://2kfsecurite.fr/#organization"
       },
       "areaServed": "Paris et Île-de-France",
       "serviceType": "Sécurité incendie"
     },
     {
       "@type": "Service",
-      "@id": "https://2kf-securite.fr/services#erp",
+      "@id": "https://2kfsecurite.fr/services#erp",
       "name": "Sécurité ERP et IGH",
       "description": "Expertise en sécurité pour les Établissements Recevant du Public et les Immeubles de Grande Hauteur. Conformité réglementaire et gestion des risques.",
       "provider": {
-        "@id": "https://2kf-securite.fr/#organization"
+        "@id": "https://2kfsecurite.fr/#organization"
       },
       "areaServed": "Paris et Île-de-France",
       "serviceType": "Sécurité des établissements"
     },
     {
       "@type": "Service",
-      "@id": "https://2kf-securite.fr/services#evenementiel",
+      "@id": "https://2kfsecurite.fr/services#evenementiel",
       "name": "Sécurité Événementielle",
       "description": "Gestion de la sécurité pour événements professionnels, salons, manifestations. Contrôle d'accès et gestion des flux.",
       "provider": {
-        "@id": "https://2kf-securite.fr/#organization"
+        "@id": "https://2kfsecurite.fr/#organization"
       },
       "areaServed": "France",
       "serviceType": "Sécurité événementielle"
     },
     {
       "@type": "Service",
-      "@id": "https://2kf-securite.fr/services#rondes",
+      "@id": "https://2kfsecurite.fr/services#rondes",
       "name": "Rondes et Interventions",
       "description": "Patrouilles de surveillance régulières, rondes de nuit, interventions rapides sur alarme.",
       "provider": {
-        "@id": "https://2kf-securite.fr/#organization"
+        "@id": "https://2kfsecurite.fr/#organization"
       },
       "areaServed": "Paris et Île-de-France",
       "serviceType": "Rondes de surveillance"
     },
     {
       "@type": "Service",
-      "@id": "https://2kf-securite.fr/services#video",
+      "@id": "https://2kfsecurite.fr/services#video",
       "name": "Vidéosurveillance et Télésurveillance",
       "description": "Installation de systèmes de vidéosurveillance, télésurveillance 24/7, levée de doute vidéo.",
       "provider": {
-        "@id": "https://2kf-securite.fr/#organization"
+        "@id": "https://2kfsecurite.fr/#organization"
       },
       "areaServed": "Paris et Île-de-France",
       "serviceType": "Vidéosurveillance"

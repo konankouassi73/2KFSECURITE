@@ -92,7 +92,7 @@ export default function MentionsLegalesPage() {
                 Éditeur du site
               </h2>
               <div className="text-primary-gray/80 space-y-3 text-sm sm:text-base leading-relaxed font-light">
-                <p>Le site <strong className="text-primary-dark font-medium">2kf-securite.fr</strong> est édité par :</p>
+                <p>Le site <strong className="text-primary-dark font-medium">2kfsecurite.fr</strong> est édité par :</p>
                 <div className="bg-gray-50 p-4 sm:p-6 rounded-lg sm:rounded-xl space-y-2 border-l-4 border-primary-accent">
                   <p><strong className="text-primary-dark font-semibold">2KF SÉCURITÉ</strong></p>
                   <p>Forme juridique : SASU au capital variable</p>
@@ -106,7 +106,7 @@ export default function MentionsLegalesPage() {
                   </p>
                   <div className="pt-3 mt-3 border-t border-gray-200">
                     <p>Téléphone : 07 69 93 07 71</p>
-                    <p>Email : contact@2kf-securite.fr</p>
+                    <p>Email : 2kfsecurite@gmail.com</p>
                   </div>
                 </div>
               </div>
@@ -187,7 +187,7 @@ export default function MentionsLegalesPage() {
                     <li>Droit à la portabilité</li>
                     <li>Droit d'opposition</li>
                   </ul>
-                  <p className="mt-3">Pour exercer ces droits : <a href="mailto:contact@2kf-securite.fr" className="text-primary-accent hover:underline">contact@2kf-securite.fr</a></p>
+                  <p className="mt-3">Pour exercer ces droits : <a href="mailto:2kfsecurite@gmail.com" className="text-primary-accent hover:underline">2kfsecurite@gmail.com</a></p>
                 </div>
               </div>
             </section>
