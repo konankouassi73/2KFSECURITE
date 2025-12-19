@@ -1,7 +1,8 @@
 import { MetadataRoute } from 'next'
+import { normalizeUrl } from '@/lib/utils/url'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://2kf-securite.fr'
+  const baseUrl = normalizeUrl(process.env.NEXT_PUBLIC_SITE_URL)
 
   return [
     {

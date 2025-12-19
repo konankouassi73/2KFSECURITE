@@ -4,6 +4,7 @@ import './globals.css'
 import { LayoutWrapper } from '@/components/layout/LayoutWrapper'
 import { LocalBusinessSchema, ServicesSchema } from '@/components/seo/StructuredData'
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
+import { normalizeUrl } from '@/lib/utils/url'
 
 // Polices Ultra Premium
 
@@ -33,7 +34,7 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://2kf-securite.fr'),
+  metadataBase: new URL(normalizeUrl(process.env.NEXT_PUBLIC_SITE_URL)),
   title: {
     default: '2KF SÉCURITÉ - Gardiennage & Sécurité Professionnelle',
     template: '%s | 2KF SÉCURITÉ',
