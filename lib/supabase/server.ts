@@ -41,3 +41,20 @@ export function createApiSupabaseClient() {
   )
 }
 
+// Helper pour typer les opérations Supabase (évite les erreurs TypeScript)
+export function typedUpdate<T extends keyof Database['public']['Tables']>(
+  supabase: ReturnType<typeof createApiSupabaseClient>,
+  table: T,
+  data: Partial<Database['public']['Tables'][T]['Update']>
+) {
+  return (supabase.from(table) as any).update(data)
+}
+
+export function typedInsert<T extends keyof Database['public']['Tables']>(
+  supabase: ReturnType<typeof createApiSupabaseClient>,
+  table: T,
+  data: Database['public']['Tables'][T]['Insert']
+) {
+  return (supabase.from(table) as any).insert(data)
+}
+

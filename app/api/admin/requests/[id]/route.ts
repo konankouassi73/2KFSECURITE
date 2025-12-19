@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createApiSupabaseClient } from '@/lib/supabase/server'
+import { createApiSupabaseClient, typedUpdate, typedInsert } from '@/lib/supabase/server'
 import { getAuthUserFromRequest, hasPermission } from '@/lib/auth'
-import { ContactRequestUpdate } from '@/lib/supabase/types'
+import { ContactRequestUpdate, ContactRequest } from '@/lib/supabase/types'
 
 // GET: Récupérer une demande spécifique
 export async function GET(
@@ -22,20 +22,20 @@ export async function GET(
       .eq('id', params.id)
       .single()
 
-    if (error) {
+    if (error || !data) {
       return NextResponse.json({ error: 'Demande non trouvée' }, { status: 404 })
     }
 
+    // Type assertion pour TypeScript
+    const requestData = data as ContactRequest
+
     // Marquer comme lu si ce n'est pas déjà fait
-    if (!data.is_read) {
-      // @ts-ignore - Supabase type inference issue
-      await supabase
-        .from('contact_requests')
-        .update({ is_read: true })
+    if (!requestData.is_read) {
+      await typedUpdate(supabase, 'contact_requests', { is_read: true })
         .eq('id', params.id)
     }
 
-    return NextResponse.json({ data: { ...data, is_read: true } })
+    return NextResponse.json({ data: { ...requestData, is_read: true } })
   } catch (error) {
     console.error('Error:', error)
     return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 })
@@ -65,10 +65,7 @@ export async function PATCH(
 
     const supabase = createApiSupabaseClient()
 
-    // @ts-ignore - Supabase type inference issue
-    const { data, error } = await supabase
-      .from('contact_requests')
-      .update(updateData)
+    const { data, error } = await typedUpdate(supabase, 'contact_requests', updateData)
       .eq('id', params.id)
       .select()
       .single()
@@ -79,8 +76,7 @@ export async function PATCH(
     }
 
     // Logger l'action
-    // @ts-ignore - Supabase type inference issue
-    await supabase.from('activity_logs').insert({
+    await typedInsert(supabase, 'activity_logs', {
       admin_id: user.id,
       action: 'update',
       entity_type: 'contact_request',
@@ -110,10 +106,7 @@ export async function DELETE(
     const supabase = createApiSupabaseClient()
 
     // Archiver plutôt que supprimer définitivement
-    // @ts-ignore - Supabase type inference issue
-    const { error } = await supabase
-      .from('contact_requests')
-      .update({ status: 'archived' })
+    const { error } = await typedUpdate(supabase, 'contact_requests', { status: 'archived' })
       .eq('id', params.id)
 
     if (error) {
@@ -122,8 +115,7 @@ export async function DELETE(
     }
 
     // Logger l'action
-    // @ts-ignore - Supabase type inference issue
-    await supabase.from('activity_logs').insert({
+    await typedInsert(supabase, 'activity_logs', {
       admin_id: user.id,
       action: 'archive',
       entity_type: 'contact_request',

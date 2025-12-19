@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createApiSupabaseClient } from '@/lib/supabase/server'
+import { createApiSupabaseClient, typedInsert } from '@/lib/supabase/server'
 import { ContactRequestInsert } from '@/lib/supabase/types'
 
 // Simple in-memory rate limiting
@@ -99,9 +99,7 @@ export async function POST(request: NextRequest) {
 
     // Sauvegarder dans Supabase
     const supabase = createApiSupabaseClient()
-    const { data, error } = await supabase
-      .from('contact_requests')
-      .insert(contactData)
+    const { data, error } = await typedInsert(supabase, 'contact_requests', contactData)
       .select()
       .single()
 

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createApiSupabaseClient } from '@/lib/supabase/server'
+import { createApiSupabaseClient, typedUpdate, typedInsert } from '@/lib/supabase/server'
 import { verifyPassword, generateToken, AdminPayload } from '@/lib/auth'
 import { AdminUser } from '@/lib/supabase/types'
 
@@ -122,15 +122,11 @@ export async function POST(request: NextRequest) {
     const token = generateToken(payload)
 
     // Mettre à jour la dernière connexion
-    // @ts-ignore - Supabase type inference issue (fixed in commit fbd5979)
-    await supabase
-      .from('admin_users')
-      .update({ last_login: new Date().toISOString() })
+    await typedUpdate(supabase, 'admin_users', { last_login: new Date().toISOString() })
       .eq('id', adminUser.id)
 
     // Logger l'action
-    // @ts-ignore - Supabase type inference issue
-    await supabase.from('activity_logs').insert({
+    await typedInsert(supabase, 'activity_logs', {
       admin_id: adminUser.id,
       action: 'login',
       entity_type: 'admin_user',
